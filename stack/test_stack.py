@@ -1,5 +1,5 @@
 import unittest
-from stack import Stack
+from stack2 import Stack
 
 class QueueTests(unittest.TestCase):
     def setUp(self):
