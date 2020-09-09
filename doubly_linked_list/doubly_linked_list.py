@@ -142,8 +142,8 @@ class DoublyLinkedList:
         #set pointer of new node
         new_node.set_previous(self.tail)
 
-        #change old tail prev value to new node
-        self.tail.set_previous(new_node)
+        #change old tail next value to new node
+        self.tail.set_next(new_node)
 
         # change tail pointer to new node
         self.tail = new_node
@@ -243,7 +243,6 @@ class DoublyLinkedList:
     def move_to_end(self, node):
         # if node is the head
         if not node.get_previous():
-            
             current_node = node
             current_node_prev = node.get_previous() #none
             current_node_next = node.get_next()
@@ -270,7 +269,6 @@ class DoublyLinkedList:
         current_node_next = node.get_next()
 
         # change next node's prev pointer to current nodes prev pointer
-        print(vars(current_node))
         current_node_next.set_previous(current_node_prev)
 
         #change tails next pointer to current node
