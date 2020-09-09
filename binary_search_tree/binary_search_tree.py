@@ -2,7 +2,6 @@
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
 at searching for a particular piece of data in the tree. 
-
 This part of the project comprises two days:
 1. Implement the methods `insert`, `contains`, `get_max`, and `for_each`
    on the BSTNode class.
@@ -17,6 +16,21 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
+        # left case?
+        # check if the value is less than the root value?
+            # move to the left and check if it is none?
+                # insert node here
+            # otherwise
+                # call insert on the root's left node
+        # right case?
+        # otherwise
+            # move to the right and check if it is none?
+                # insert the node here
+            # otherwise
+                # call insert on the root's right node
+                
+
+        # other / base case
         pass
 
     # Return True if the tree contains the value
@@ -80,6 +94,6 @@ print("elegant methods")
 print("pre order")
 bst.pre_order_dft()
 print("in order")
-bst.in_order_dft()
+# bst.in_order_dft()
 print("post order")
 bst.post_order_dft()  
