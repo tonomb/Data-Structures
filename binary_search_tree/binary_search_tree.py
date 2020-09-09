@@ -79,7 +79,11 @@ class BSTNode:
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
         fn(self.value)
-
+        if self.left is not None:
+            self.left.for_each(fn)
+        if self.right is not None:
+            self.right.for_each(fn)
+        
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
@@ -113,7 +117,18 @@ class BSTNode:
 bst = BSTNode(5)
 arr = []
 cb = lambda x: arr.append(x)
+import random
+v1 = random.randint(1, 101)
+v2 = random.randint(1, 101)
+v3 = random.randint(1, 101)
+v4 = random.randint(1, 101)
+v5 = random.randint(1, 101)
 
+bst.insert(v1)
+bst.insert(v2)
+bst.insert(v3)
+bst.insert(v4)
+bst.insert(v5)
 bst.for_each(cb)
 
 print(arr)
