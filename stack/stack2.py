@@ -132,44 +132,43 @@ class LinkedList:
             current = current.get_next()
         return max_value
 
-#  class Stack:
+# class Stack:
 #     def __init__(self):
-#         self.size = 0
 #         self.storage = []
+#         self.size = 0
 
 #     def __len__(self):
 #         return self.size
 
 #     def push(self, value):
-#         self.size += 1
 #         self.storage.append(value)
+#         self.size +=1
 
 #     def pop(self):
 #         if self.size == 0:
 #             return None
-#         self.size -= 1
-#         return self.storage.pop()
-
-# import sys
-# sys.path.append('../singly_linked_list/')
-# from singly_linked_list.py import LinkedList
+#         else:
+#             self.size -= 1
+#             return self.storage.pop()
 
 class Stack:
     def __init__(self):
-        self.size = 0
         self.storage = LinkedList()
-    
+        self.size = 0
+
     def __len__(self):
         return self.size
-        # other option return len(self.storage)
 
     def push(self, value):
         self.storage.add_to_tail(value)
-        self.size += 1
-
+        self.size +=1
 
     def pop(self):
         if self.size == 0:
             return None
-        self.size -= 1
-        return self.storage.remove_tail()
+        else:
+            self.size -= 1
+            return self.storage.remove_tail()
+
+
+

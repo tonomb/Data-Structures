@@ -1,14 +1,17 @@
 """
-A stack is a data structure whose primary purpose is to store and
-return elements in Last In First Out order. 
+A queue is a data structure whose primary purpose is to store and
+return elements in First In First Out order. 
 
-1. Implement the Stack class using an array as the underlying storage structure.
-   Make sure the Stack tests pass.
-2. Re-implement the Stack class, this time using the linked list implementation
+1. Implement the Queue class using an array as the underlying storage structure.
+   Make sure the Queue tests pass.
+2. Re-implement the Queue class, this time using the linked list implementation
    as the underlying storage structure.
-   Make sure the Stack tests pass.
+   Make sure the Queue tests pass.
 3. What is the difference between using an array vs. a linked list when 
-   implementing a Stack?
+   implementing a Queue?
+   
+Stretch: What if you could only use instances of your Stack class to implement the Queue?
+         What would that look like? How many Stacks would you need? Try it!
 """
 
 
@@ -28,6 +31,7 @@ class Node:
     def set_next(self, new_next):
         # set this node's next_node reference to the passed in node
         self.next_node = new_next
+
 
 class LinkedList:
     def __init__(self):
@@ -74,13 +78,13 @@ class LinkedList:
     def remove_tail(self):
         if not self.head:
             return None
-        
+
         if self.head is self.tail:
             value = self.head.get_value()
             self.head = None
             self.tail = None
             return value
-        
+
         current = self.head
 
         while current.get_next() is not self.tail:
@@ -102,10 +106,10 @@ class LinkedList:
         #     return False
         #   return search(node.get_next())
         # return search(self.head)
-    
+
         # get a reference to the node we're currently at; update this as we traverse the list
         current = self.head
-        # check to see if we're at a valid node 
+        # check to see if we're at a valid node
         while current:
             # return True if the current value we're looking at matches our target value
             if current.get_value() == value:
@@ -132,44 +136,60 @@ class LinkedList:
             current = current.get_next()
         return max_value
 
-#  class Stack:
+
+
+# class Queue:
 #     def __init__(self):
-#         self.size = 0
 #         self.storage = []
 
 #     def __len__(self):
-#         return self.size
+#         return len(self.storage)
 
-#     def push(self, value):
-#         self.size += 1
+#     def enqueue(self,value):
 #         self.storage.append(value)
 
-#     def pop(self):
-#         if self.size == 0:
+#     def dequeue(self):
+#         if len(self.storage) == 0:
 #             return None
-#         self.size -= 1
-#         return self.storage.pop()
+#         else:
+#             return self.storage.pop(0)
 
-# import sys
-# sys.path.append('../singly_linked_list/')
-# from singly_linked_list.py import LinkedList
-
-class Stack:
+class Queue:
     def __init__(self):
-        self.size = 0
         self.storage = LinkedList()
-    
+        self.size = 0
+
     def __len__(self):
         return self.size
-        # other option return len(self.storage)
 
-    def push(self, value):
+    def enqueue(self, value):
         self.storage.add_to_tail(value)
         self.size += 1
 
-
-    def pop(self):
+    def dequeue(self):
         if self.size == 0:
             return None
-        self.size -= 1
-        return self.storage.remove_tail()
+        else:
+            self.size -= 1
+            return self.storage.remove_head()
+
+
+    
+
+
+
+q = Queue()
+
+q.enqueue(100)
+print(q.storage.tail.get_value())
+q.enqueue(101)
+print(q.storage.tail.get_value())
+q.enqueue(105)
+
+print(q.storage.tail.get_value())
+
+q.dequeue()
+print(q.storage.tail.get_value())
+q.dequeue()
+print(q.storage.tail.get_value())
+
