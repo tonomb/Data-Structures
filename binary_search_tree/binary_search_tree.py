@@ -76,6 +76,13 @@ class BSTNode:
         else:
             return self.right.get_max()
 
+    def get_min(self):
+        max_value = self.value 
+        if self.left == None:
+            return max_value
+        else:
+            return self.left.get_max()
+
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
         fn(self.value)
@@ -90,16 +97,78 @@ class BSTNode:
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
         pass
+            
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
-    def bft_print(self):
-        pass
+    """
+    queue
+    grab starting node and put it in a queue
 
+    if there are items in the queue
+    dequeue what the current node is
+    mark it as visited
+    print the value
+    check left
+    enqueue the left
+    check right
+    enqueue the right
+    """
+    def bft_print(self):
+        # instantiate a queue
+        q = []
+        # enqueue our starting node (self)
+        q.append(self)
+        # while the queue is not empty
+        while len(q) > 0:
+            # dequeue the current node
+            node = q.pop(0)
+            # print the nodes value
+            print(node.value)
+            # check if left child exists
+            if node.left:
+                # enqueue left child
+                q.append(node.left)
+            # check if right child exists
+            if node.right:
+                # enqueue right child
+                q.append(node.right)
+            
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+    """
+    stack
+    grab starting node and put it in a stack
+
+    if there are items in the stack
+    pop what the current node is
+    mark it as visited
+    print the value
+    check left
+    push the left
+    check right
+    push the right
+    """
     def dft_print(self):
-        pass
+        # instantiate a stack
+        q = []
+        # push our starting node (self)
+        q.append(self)
+        # while the stack is not empty
+        while len(q) > 0:
+            # pop the current node
+            node = q.pop()
+            # print the nodes value
+            print(node.value)
+            # check if right child exists
+            if node.right:
+                # push right child
+                q.append(node.right)
+            # check if left child exists
+            if node.left:
+                # push left child
+                q.append(node.left)
+            
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -113,40 +182,20 @@ class BSTNode:
         pass
 
 
+"""
+This code is necessary for testing the `print` methods
+"""
+bst = BSTNode(1)
 
-bst = BSTNode(5)
-arr = []
-cb = lambda x: arr.append(x)
-import random
-v1 = random.randint(1, 101)
-v2 = random.randint(1, 101)
-v3 = random.randint(1, 101)
-v4 = random.randint(1, 101)
-v5 = random.randint(1, 101)
+bst.insert(8)
+bst.insert(5)
+bst.insert(7)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
 
-bst.insert(v1)
-bst.insert(v2)
-bst.insert(v3)
-bst.insert(v4)
-bst.insert(v5)
-bst.for_each(cb)
-
-print(arr)
-
-
-# """
-# This code is necessary for testing the `print` methods
-# """
-# bst = BSTNode(1)
-
-# bst.insert(8)
-# bst.insert(5)
-# bst.insert(7)
-# bst.insert(6)
-# bst.insert(3)
-# bst.insert(4)
-# bst.insert(2)
-
+bst.in_order_print()
 # bst.bft_print()
 # bst.dft_print()
 
