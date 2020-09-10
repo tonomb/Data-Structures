@@ -53,7 +53,6 @@ class BSTNode:
             if self.left == None:
                 return False
             else:
-                print(target, self.left.value)
                 # else call contains on this node
                 return self.left.contains(target)
 
@@ -96,8 +95,17 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
-            
+        # move to left node 
+        # check if there is no value to the left 
+        if not self.left:
+            print(self.value)
+        if self.left:
+            self.left.in_order_print()
+            print(self.value)
+        if self.right:
+            self.right.in_order_print()
+
+        return
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -175,11 +183,35 @@ class BSTNode:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self):
-        pass
+          # instantiate a stack
+        q = []
+        # push our starting node (self)
+        q.append(self)
+        # while the stack is not empty
+        while len(q) > 0:
+            # pop the current node
+            node = q.pop()
+            # print the nodes value
+            print(node.value)
+            # check if right child exists
+            if node.right:
+                # push right child
+                q.append(node.right)
+            # check if left child exists
+            if node.left:
+                # push left child
+                q.append(node.left)
 
     # Print Post-order recursive DFT
-    def post_order_dft(self):
-        pass
+    def post_order_dft(self): 
+        if self.left:
+            self.left.post_order_dft()
+        if self.right:
+            self.right.post_order_dft()
+            print(self.value)
+        if not self.left or not self.right:
+            print(self.value)
+        return
 
 
 """
@@ -187,11 +219,12 @@ This code is necessary for testing the `print` methods
 """
 bst = BSTNode(1)
 
+bst.insert(0)
 bst.insert(8)
 bst.insert(5)
 bst.insert(7)
 bst.insert(6)
-bst.insert(3)
+bst.insert(3) 
 bst.insert(4)
 bst.insert(2)
 
